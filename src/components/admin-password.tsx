@@ -2,26 +2,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { PasswordStore } from "@/store";
 
-const AdminPassword = ({
-  setAdminLoggin,
-}: {
-  setAdminLoggin: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const AdminPassword = () => {
+  const [isError, setIsError] = useState(false);
+
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [incorrectPassword, setIncorrectPassword] = useState(false);
   const router = useRouter();
+
+  const setIsPasswordCorrect = PasswordStore(
+    (state) => state.setIsPasswordCorrect
+  );
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (password === "MiningGarden") {
-      router.push("/admin");
+      setIsPasswordCorrect(true);
     } else {
-      setIncorrectPassword(true);
+      setIsError(true);
     }
   };
 
@@ -50,7 +52,7 @@ const AdminPassword = ({
               />
             </span>
           </div>
-          {incorrectPassword ? (
+          {isError ? (
             <p className="text-red-500 ">Incorrect password. Try again!</p>
           ) : (
             <></>
@@ -58,7 +60,7 @@ const AdminPassword = ({
           <div className="flex justify-end mt-3">
             <button
               className="bg-red-500 hover:bg-red-700 text-white duration-300 font-semibold py-2 px-4 rounded-md mr-2"
-              onClick={() => setAdminLoggin(false)}
+              onClick={() => router.push("/")}
             >
               Cancel
             </button>

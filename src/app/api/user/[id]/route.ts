@@ -5,7 +5,7 @@ import prisma from "@/helper/db";
 
 export async function PATCH(request: Request, {params}: {params: {id: string}}) {
   const body: any = await request.json();
-  console.log(body);
+
   const session = await getServerSession(authOptions);
   if (!session) {
     NextResponse.json({ error: "You are not signed in yet." }, { status: 403 });

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import NextAuthProvider from "@/helper/NextAuthProvider";
 import QueryProvider from "@/helper/QueryProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +18,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={robotoMono.className}>
         <QueryProvider>
           <NextAuthProvider>{children}</NextAuthProvider>
         </QueryProvider>

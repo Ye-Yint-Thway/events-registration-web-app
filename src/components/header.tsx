@@ -1,20 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import AdminPassword from "./admin-password";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { User } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 const Header = ({ user }: { user: User }) => {
+  const router = useRouter();
+
   const session = useSession();
-
-  const [adminLoggin, setAdminLoggin] = useState(false);
-
-  const adminClicked = () => {
-    setAdminLoggin(true);
-  };
 
   return (
     <>
@@ -26,7 +22,7 @@ const Header = ({ user }: { user: User }) => {
         </div>
         <div className="flex justify-between gap-3 items-center sm:text[10px]">
           <button
-            onClick={adminClicked}
+            onClick={() => router.push("/admin")}
             className="font-semibold text-white relative group text-[16px] sm:text-[10px]"
           >
             <span className="relative z-10">Admin Panel</span>
@@ -65,13 +61,9 @@ const Header = ({ user }: { user: User }) => {
             >
               Sign In
             </button>
-
-            // relative group p-1 bg-green-500 px-5 py-2 hover:bg-green-600 text-white rounded-md text-[16px] sm:text-[10px] duration-300"
           )}
         </div>
       </div>
-
-      {adminLoggin ? <AdminPassword setAdminLoggin={setAdminLoggin} /> : <></>}
     </>
   );
 };

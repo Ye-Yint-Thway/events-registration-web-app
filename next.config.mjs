@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {images: {
+const nextConfig = { output: "standalone",  images: {
     remotePatterns: [
         {
             protocol: "https",

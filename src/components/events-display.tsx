@@ -89,7 +89,7 @@ const EventsDisplay = ({
   return (
     <>
       <div className="flex flex-col items-start justify-between h-full w-full sm:w-full p-3 bg-slate-600 gap-3 sm:gap-1 rounded-lg overflow-hidden">
-        <div className="space-y-3 max-w-full">
+        <div className="space-y-3 w-full">
           {isImageURL(event.photoURL) ? (
             <img
               src={event.photoURL}

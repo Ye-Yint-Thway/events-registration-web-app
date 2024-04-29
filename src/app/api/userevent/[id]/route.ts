@@ -5,7 +5,7 @@ export async function PATCH(req: Request, {params}: {params: {id: string}}){
     
     const body: any = await req.json();
     const userEvent = await prisma.userEvents.findUnique({ where: { id: params.id } });
-    console.log(body)
+
     if(!userEvent){
         return NextResponse.json({ error: "Event does not exist" }, { status: 404 });
     }

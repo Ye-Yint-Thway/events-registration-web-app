@@ -10,7 +10,6 @@ const SettingPage = async () => {
   const user = await prisma.user.findFirst({
     where: { email: session?.user?.email },
   });
-  console.log(user);
 
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center ">
