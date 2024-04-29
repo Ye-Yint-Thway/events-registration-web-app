@@ -47,7 +47,8 @@ const CreateEvent = () => {
           date: event.date,
           time: event.time,
           location: capitalizeFirstLetter(event.location.trim()),
-          photoURL: capitalizeFirstLetter(event.photoURL.trim()),
+          // photoURL: capitalizeFirstLetter(event.photoURL.trim()),
+          photoURL: event.photoURL,
         });
         router.push("/admin/currentevents");
         router.refresh();

@@ -28,15 +28,25 @@ export default async function Home() {
   const futureEvents = events.filter((event) => event.date >= currentDate);
 
   return (
-    <div className="grid grid-cols-4 sm:grid-cols-1 items-center justify-items-center m-2 gap-2">
-      {futureEvents.map((event, index) => (
-        <EventsDisplay
-          key={index}
-          event={event}
-          user={user!}
-          userEvents={userEvents}
-        />
-      ))}
-    </div>
+    <>
+      {futureEvents.length >= 1 ? (
+        <div className="grid grid-cols-4 sm:grid-cols-1 items-center justify-items-center m-2 gap-2">
+          {futureEvents.map((event, index) => (
+            <EventsDisplay
+              key={index}
+              event={event}
+              user={user!}
+              userEvents={userEvents}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="flex items-center justify-center m-2 gap-2">
+          <p className="text-slate-600 font-semibold text-center">
+            There are no events currently.
+          </p>
+        </div>
+      )}
+    </>
   );
 }
