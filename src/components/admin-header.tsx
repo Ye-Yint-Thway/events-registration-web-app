@@ -1,10 +1,15 @@
 "use client";
 
+import { PasswordStore } from "@/store";
 import { useRouter } from "next/navigation";
 import React from "react";
 
 const AdminHeader = () => {
   const router = useRouter();
+
+  const setIsPasswordCorrect = PasswordStore(
+    (state) => state.setIsPasswordCorrect
+  );
 
   return (
     <div className="w-full h-[50px] bg-slate-600 flex justify-between items-center px-4 py-1">
@@ -23,7 +28,7 @@ const AdminHeader = () => {
         </button>
         <button
           onClick={() => {
-            router.push("/");
+            router.push("/"), setIsPasswordCorrect(false);
           }}
           className="font-semibold text-white relative group"
         >

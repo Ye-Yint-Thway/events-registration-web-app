@@ -11,7 +11,9 @@ const PasswordProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   useEffect(() => {
-    setIsPasswordCorrect(false);
+    if (window.location.pathname === "/") {
+      setIsPasswordCorrect(false);
+    }
   }, []);
 
   if (!isPasswordCorrect) {
